@@ -17,38 +17,22 @@ if (themeToggle) {
   });
 }
 
-// 랜덤 이모지 카드 뽑기 기능
+// 랜덤 이모지 기능 (심플 버전)
 const bearEmojis = ['🧸', '🐻', '🐻‍❄️', '🐼', '🐨', '🍯', '🐾', '🌟', '🍀', '🍎', '🍰', '🎈'];
 const emojiButtons = document.querySelectorAll('.emoji-btn');
 
 emojiButtons.forEach(button => {
   button.addEventListener('click', () => {
-    // 이미 뽑았다면 리턴 (한 번만 가능하게)
-    if (button.classList.contains('checked')) return;
-
+    const randomEmoji = bearEmojis[Math.floor(Math.random() * bearEmojis.length)];
     const card = button.parentElement;
     const emojiDisplay = card.querySelector('.bear-emoji');
     
-    button.innerText = '행운 확인 중...';
-    button.disabled = true;
-
-    // 셔플 애니메이션 (0.5초 동안 빠르게 변경)
-    let count = 0;
-    const shuffle = setInterval(() => {
-      emojiDisplay.innerText = bearEmojis[Math.floor(Math.random() * bearEmojis.length)];
-      count++;
-      
-      // 10번 정도 섞은 후 멈춤
-      if (count > 10) {
-        clearInterval(shuffle);
-        const finalEmoji = bearEmojis[Math.floor(Math.random() * bearEmojis.length)];
-        emojiDisplay.innerText = finalEmoji;
-        
-        // 결과 확정 스타일 적용
-        button.innerText = '오늘의 행운 확인 완료!';
-        button.classList.add('checked');
-        emojiDisplay.classList.add('reveal');
-      }
-    }, 50);
+    emojiDisplay.innerText = randomEmoji;
+    
+    // 간단한 클릭 효과
+    emojiDisplay.style.transform = 'scale(1.3)';
+    setTimeout(() => {
+      emojiDisplay.style.transform = 'scale(1)';
+    }, 150);
   });
 });

@@ -121,27 +121,11 @@ body.dark-mode .bear-card { border-color: rgba(255,255,255,0.05); }
   border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.3s;
+  transition: opacity 0.3s;
 }
 
 .emoji-btn:hover {
   opacity: 0.8;
-}
-
-.emoji-btn.checked {
-  background-color: #6c757d;
-  cursor: default;
-  opacity: 0.6;
-}
-
-.bear-emoji.reveal {
-  animation: bounce 0.5s ease-out;
-}
-
-@keyframes bounce {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.5); }
-  100% { transform: scale(1); }
 }
 
 /* 연구 일지(칼럼) 스타일 */

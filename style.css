@@ -150,6 +150,16 @@ body.dark-mode .form-group textarea {
   transform: translateY(0);
 }
 
+/* 댓글 섹션 스타일 */
+.comment-section {
+  margin-top: 60px;
+  padding: 40px;
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: 0 4px 15px var(--card-shadow);
+  transition: background-color 0.3s;
+}
+
 .bear-emoji {
   font-size: 3rem;
   margin-bottom: 15px;

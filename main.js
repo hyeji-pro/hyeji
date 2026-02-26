@@ -17,22 +17,30 @@ if (themeToggle) {
   });
 }
 
-// 랜덤 이모지 기능 (심플 버전)
+// 랜덤 이모지 뽑기 (한 번만 가능)
 const bearEmojis = ['🧸', '🐻', '🐻‍❄️', '🐼', '🐨', '🍯', '🐾', '🌟', '🍀', '🍎', '🍰', '🎈'];
 const emojiButtons = document.querySelectorAll('.emoji-btn');
 
 emojiButtons.forEach(button => {
   button.addEventListener('click', () => {
+    // 이미 뽑은 버튼이면 아무것도 하지 않음
+    if (button.classList.contains('done')) return;
+
     const randomEmoji = bearEmojis[Math.floor(Math.random() * bearEmojis.length)];
     const card = button.parentElement;
     const emojiDisplay = card.querySelector('.bear-emoji');
     
+    // 이모지 변경 및 효과
     emojiDisplay.innerText = randomEmoji;
-    
-    // 간단한 클릭 효과
-    emojiDisplay.style.transform = 'scale(1.3)';
+    emojiDisplay.style.transform = 'scale(1.4)';
     setTimeout(() => {
       emojiDisplay.style.transform = 'scale(1)';
-    }, 150);
+    }, 200);
+
+    // 버튼 상태 변경 (확정)
+    button.innerText = '오늘의 행운 확인 완료!';
+    button.classList.add('done');
+    button.style.opacity = '0.5';
+    button.style.cursor = 'default';
   });
 });

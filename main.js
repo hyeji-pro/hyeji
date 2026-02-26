@@ -7,19 +7,37 @@ const body = document.body;
 const currentTheme = localStorage.getItem('theme');
 if (currentTheme === 'dark') {
   body.classList.add('dark-mode');
-  console.log('Current theme: dark');
-} else {
-  console.log('Current theme: light');
 }
 
-// 버튼 클릭 시 테마 전환
+// 테마 전환
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    const isDark = body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    console.log('Theme changed to:', isDark ? 'dark' : 'light');
+    localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
   });
-} else {
-  console.error('Theme toggle button not found!');
 }
+
+// 랜덤 이모지 기능
+const bearEmojis = ['🧸', '🐻', '🐻‍❄️', '🐼', '🐨', '🍯', '🐾', '🌟', '🍀', '🍎', '🍰', '🎈'];
+const emojiButtons = document.querySelectorAll('.emoji-btn');
+
+emojiButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const randomEmoji = bearEmojis[Math.floor(Math.random() * bearEmojis.length)];
+    const card = button.parentElement;
+    const emojiDisplay = card.querySelector('.bear-emoji');
+    
+    // 원래 이모지 저장 (처음 한 번만)
+    if (!button.dataset.originalEmoji) {
+      button.dataset.originalEmoji = emojiDisplay.innerText;
+    }
+
+    // 이모지 변경 애니메이션 효과
+    emojiDisplay.style.transform = 'scale(1.5)';
+    emojiDisplay.innerText = randomEmoji;
+    
+    setTimeout(() => {
+      emojiDisplay.style.transform = 'scale(1)';
+    }, 200);
+  });
+});

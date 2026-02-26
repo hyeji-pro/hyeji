@@ -1,3 +1,5 @@
+console.log('main.js loaded!');
+
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
@@ -5,16 +7,19 @@ const body = document.body;
 const currentTheme = localStorage.getItem('theme');
 if (currentTheme === 'dark') {
   body.classList.add('dark-mode');
+  console.log('Current theme: dark');
+} else {
+  console.log('Current theme: light');
 }
 
 // 버튼 클릭 시 테마 전환
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  
-  // 상태 저장
-  if (body.classList.contains('dark-mode')) {
-    localStorage.setItem('theme', 'dark');
-  } else {
-    localStorage.setItem('theme', 'light');
-  }
-});
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    console.log('Theme changed to:', isDark ? 'dark' : 'light');
+  });
+} else {
+  console.error('Theme toggle button not found!');
+}

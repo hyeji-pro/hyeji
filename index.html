@@ -4,17 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>다크/라이트 모드 사이트</title>
-  <link href="/style.css" rel="stylesheet">
   <script>
+    // GitHub Pages에서 Cloudflare Pages로 리다이렉트
     if (window.location.hostname === 'hyeji-pro.github.io') {
       window.location.href = 'https://hyeji.pages.dev' + window.location.pathname;
     }
   </script>
+  <link href="./style.css" rel="stylesheet">
 </head>
 <body>
+  <button id="theme-toggle">모드 전환</button>
   <h1>안녕하세요!</h1>
   <p>이곳은 다크 모드와 라이트 모드를 지원하는 페이지입니다.</p>
-  <button id="theme-toggle">모드 전환</button>
-  <script defer src="/main.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>
